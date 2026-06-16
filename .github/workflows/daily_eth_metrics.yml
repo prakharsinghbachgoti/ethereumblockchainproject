@@ -23,8 +23,11 @@ jobs:
       - name: Write GCP credentials
         run: echo '${{ secrets.MYSECRETJSONKEY }}' > service_client.json
 
+      - name: Convert notebook to script
+        run: jupyter nbconvert --to script google_cloud_connection.ipynb
+
       - name: Run script
-        run: python your_script.py
+        run: python google_cloud_connection.py
 
       - name: Commit updated CSV back to repo
         run: |
