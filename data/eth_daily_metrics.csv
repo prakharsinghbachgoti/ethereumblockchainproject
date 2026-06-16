@@ -1,0 +1,2 @@
+date,total_transactions,avg_gas_cost_usd,total_eth_transferred,active_unique_addresses,avg_block_utilization_pct,failed_tx_rate_pct,new_contracts_deployed,token_transfer_count
+2026-06-15,1842441,0.4320569127589038,2012415.7678833785,612957,50.51502845705773,1.813,2283,4263204
