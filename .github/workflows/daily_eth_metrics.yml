@@ -1,0 +1,33 @@
+name: Daily ETH Metrics
+
+on:
+  schedule:
+    - cron: "30 0 * * *"
+  workflow_dispatch: {}
+
+jobs:
+  run-metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install pandas google-cloud-bigquery db-dtypes pyarrow
+
+      - name: Write GCP credentials
+        run: echo '${{ secrets.MYSECRETJSONKEY }}' > service_client.json
+
+      - name: Run script
+        run: python your_script.py
+
+      - name: Commit updated CSV back to repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/eth_daily_metrics.csv
+          git diff --cached --quiet || git commit -m "Update daily ETH metrics"
+          git push
