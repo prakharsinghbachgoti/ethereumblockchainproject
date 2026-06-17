@@ -18,7 +18,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: run: pip install pandas google-cloud-bigquery db-dtypes pyarrow jupyter
+        run: run: pip install pandas google-cloud-bigquery db-dtypes pyarrow jupyter nbconvert
 
       - name: Write GCP credentials
         run: echo '${{ secrets.MYSECRETJSONKEY }}' > service_client.json
